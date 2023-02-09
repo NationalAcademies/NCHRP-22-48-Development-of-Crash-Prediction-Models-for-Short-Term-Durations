@@ -1,0 +1,31 @@
+
+extends ../../../../../base.pug
+block content
+    div
+        ul(class="list")
+            li
+                h2 Special Model (AZ, CO, FL, GA, IL, KS, MD, MI, OR, TX, VA, WA, WI)
+                p Predicted Crashes=No.of years ×Segment Length                             ×exp⁡(1.154+0.322 LogVolume -1.209 LogAvgSpeed+0.100 Std.Speed+0.631 LaneNumber_(6-8)+1.272 LaneNumber_(≥10)+0.475(CO,KS,TX,VA)+1.392(GA,MI)+0.997(IL)-0.383(MD,WI)-0.700(OR)).
+            li
+                h2 Generic Model
+                p Predicted Crashes=No.of years ×Segment Length                             ×exp⁡(1.154+0.322 LogVolume -1.209 LogAvgSpeed+0.100 Std.Speed+0.631 LaneNumber_(6-8)+1.272 LaneNumber_(≥10))×CF.
+                ul
+                    li
+                        h2 Calibration Factor
+                        p 𝑪𝒂𝒍𝒊𝒃𝒓𝒂𝒕𝒊𝒐𝒏 𝑭𝒂𝒄𝒕𝒐𝒓_𝒔𝒕𝒂𝒕𝒆=(∑ 〖𝑂𝑏𝑠𝑒𝑟𝑣𝑒𝑑 𝐶𝑟𝑎𝑠ℎ𝑒𝑠_𝑠𝑡𝑎𝑡𝑒 〗)/∑ 〖𝑃𝑟𝑒𝑑𝑖𝑐𝑡𝑒𝑑  𝐶𝑟𝑎𝑠ℎ𝑒𝑠_𝑠𝑡𝑎𝑡𝑒〗
+
+        form(method="post", action="/figure", enctype="multipart/form-data")
+            p
+                span Select data file:
+                input(type="file" name="dataFile")
+
+            p
+                span Select Model:
+                select(name="model")
+                    option(value="special") Special
+                    option(value="generic") Generic
+            p
+                span Observed Crashes State:
+                input(type="number" name="crashes_state" step="0.001")
+            p
+                button(type="submit" class="btn btn-primary")  Upload

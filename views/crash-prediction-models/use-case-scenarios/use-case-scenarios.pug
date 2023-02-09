@@ -1,0 +1,16 @@
+extends ../../base.pug
+
+block content
+    div(class="use-case-scenarios-container")
+        h3 The short-term SPFs are available for the following use case scenarios:
+        ul(class="list")
+            each scenario in scenarios
+              li
+                a(href=scenario.link)
+                    img(src="/" + scenario.image)
+                    p #{scenario.type}
+
+
+
+    style
+        include use-case-scenarios.css

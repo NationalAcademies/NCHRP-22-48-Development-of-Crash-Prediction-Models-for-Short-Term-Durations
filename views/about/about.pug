@@ -1,0 +1,21 @@
+extends ../base.pug
+
+block content
+    div(class="about-container")
+        p This tool was developed under the NCHRP 22-48 project. The tool aims to provide an easy way to use the developed short-term crash prediction models for different use case scenarios. The tool should be utilized along with the Project’s user guide. The user guide includes the following:
+        ul
+            li The required data variables
+            li The detailed steps to process microscopic raw data
+            li The developed short-term crash prediction models for different use case scenarios and crash severity levels including:
+                ul
+                    li KABCO : Five-level injury severity scale, K = fatal injury; A = incapacitating injury; B = non-incapacitating evident injury; C = possible injury; O = property damage only
+                    li KABC : Fatal and injury crashes
+                    li KAB : Fatal and visible injury crashes
+                    li KA : Fatal and severe injury crashes
+                    li O : Property damage only crashes
+
+        p The project was conducted under the lead of University of Central Florida Smart & Safe Transportation Lab and the contribution of University of Connecticut.
+
+
+    style
+        include about.css

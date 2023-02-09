@@ -1,0 +1,24 @@
+extends ../base.pug
+
+
+block content
+    div(class="required-data-container")
+        p The user should prepare the datasets following the provided steps in the NCHRP 22-48 user guide before utilizing the web tool. The final dataset for any model should include the following variables:
+
+        table(class="table table-dark")
+            thead
+                tr
+                    th(scope="col") Variable
+                    th(scope="col") Description
+                    th(scope="col") Sample Value
+            tbody
+                each item in requiredData
+                    tr
+                        td #{item.variable}
+                        td #{item.description}
+                        td #{item.sampleValue}
+
+
+
+    style
+        include required-data.css

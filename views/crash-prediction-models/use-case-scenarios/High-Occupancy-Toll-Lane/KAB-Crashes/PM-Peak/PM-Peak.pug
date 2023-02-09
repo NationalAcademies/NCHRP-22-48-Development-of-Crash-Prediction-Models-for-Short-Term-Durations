@@ -1,0 +1,19 @@
+
+extends ../../../../../base.pug
+block content
+    div
+        ul(class="list")
+            li
+                h2 Special Model (AZ, CO, FL, GA, IL, KS, MD, MI, OR, TX, VA, WA, WI)
+                p 𝑷𝒓𝒆𝒅𝒊𝒄𝒕𝒆𝒅 𝑪𝒓𝒂𝒔𝒉𝒆𝒔=𝑁𝑜. 𝑜𝑓 𝑦𝑒𝑎𝑟𝑠 𝑥 𝑆𝑒𝑔𝑚𝑒𝑛𝑡 𝐿𝑒𝑛𝑔𝑡ℎ 𝑥 exp(−0.481+0.399 𝐿𝑜𝑔𝑉𝑜𝑙𝑢𝑚𝑒 −1.020 𝐿𝑜𝑔 𝐴𝑣𝑔𝑆𝑝𝑒𝑒𝑑+0.094 𝑆𝑡𝑑. 𝑆𝑝𝑒𝑒𝑑+0.636 〖𝐿𝑎𝑛𝑒𝑁𝑢𝑚𝑏𝑒𝑟〗_(6−8)  +⁡1.290×〖𝐿𝑎𝑛𝑒𝑁𝑢𝑚𝑏𝑒𝑟〗_(≥10)+0.476 (𝐴𝑍,𝐹𝐿,𝑇𝑋)+1.075 (𝐶𝑂,𝑉𝐴)+1.795 (𝐺𝐴,𝑀𝐼)+1.342 (𝐼𝐿,𝐾𝑆))
+
+
+
+        form(method="post", action="/figure", enctype="multipart/form-data")
+            p
+                span Select data file:
+                input(type="file" name="dataFile")
+
+
+            p
+                button(type="submit" class="btn btn-primary")  Upload

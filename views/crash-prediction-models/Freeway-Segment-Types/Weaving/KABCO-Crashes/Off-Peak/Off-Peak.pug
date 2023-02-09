@@ -1,0 +1,39 @@
+
+extends ../../../../../base.pug
+block content
+    div
+        ul(class="list")
+            li
+                h2 Special Model (CO, FL, KS, MI, OR, VA, WI)
+                p Type is A: Predicted Crashes=No.of years ×Segment Length                             ×exp⁡(2.019 +0.520 Ln (Total Volume)+0.473 OffRampVolumeRatio-1.462 Ln (AvgSpeed)+0.066 Std.Speed+0.639 (MI,WI)).
+                p Type is B: Predicted Crashes=No.of years ×Segment Length                             ×exp⁡(-11.916 +1.377 Ln (Total Volume)+0.656 OffRampVolumeRatio+0.102 Std.Speed-2.156 CO-0.823 OR).
+            li
+                h2 Generic Model
+                p Type is A: Predicted Crashes=No.of years ×Segment Length                             ×exp⁡(2.019 +0.520 Ln (Total Volume)+0.473 OffRampVolumeRatio-1.462 Ln (AvgSpeed)+0.066 Std.Speed) ×CF.
+                p Type is B: Predicted Crashes=No.of years ×Segment Length                             ×exp⁡(-11.916 +1.377 Ln (Total Volume)+0.656 OffRampVolumeRatio+0.102 Std.Speed) ×CF.
+                ul
+                    li
+                        h2 Calibration Factor
+                        p 𝑪𝒂𝒍𝒊𝒃𝒓𝒂𝒕𝒊𝒐𝒏 𝑭𝒂𝒄𝒕𝒐𝒓_𝒔𝒕𝒂𝒕𝒆=(∑ 〖𝑂𝑏𝑠𝑒𝑟𝑣𝑒𝑑 𝐶𝑟𝑎𝑠ℎ𝑒𝑠_𝑠𝑡𝑎𝑡𝑒 〗)/∑ 〖𝑃𝑟𝑒𝑑𝑖𝑐𝑡𝑒𝑑  𝐶𝑟𝑎𝑠ℎ𝑒𝑠_𝑠𝑡𝑎𝑡𝑒〗
+
+        form(method="post", action="/figure", enctype="multipart/form-data")
+            p
+                span Select data file:
+                input(type="file" name="dataFile")
+
+            p
+                span Type:
+                select(name="type")
+                    option(value="A") A
+                    option(value="B") B
+
+            p
+                span Select Model:
+                select(name="model")
+                    option(value="special") Special
+                    option(value="generic") Generic
+            p
+                span Observed Crashes State:
+                input(type="number" name="crashes_state" step="0.001")
+            p
+                button(type="submit" class="btn btn-primary")  Upload

@@ -1,0 +1,41 @@
+
+extends ../../../../../base.pug
+block content
+    div
+        ul(class="list")
+            li
+                h2 Special Model (AZ, CO, FL, GA, IL, KS, MD, MI, OR, TX, VA, WA, WI)
+                p Predicted Crashes=(A × B)/C
+                p A=U/1+U    ,(Probability of non-zero crashes in the zero hurdle model)
+                p B=Expected crash probability from the count model
+                p C=1-e^(-B),(probability of non-zero crashes in the count model)
+                p U =  No.of years ×Segment Length × exp (-2.392 + 0.157 LogVolume – 0.038 LogAvgSpeed -2.374 (MI,WA) - 0.805 VA).
+                p B = No.of years ×Segment Length ×exp⁡(-4.378-0.665 LogVolume + 0.160 LogAvgSpeed).
+            li
+                h2 Generic Model
+                p Predicted Crashes=(A × B)/C x CF
+                p A=U/1+U    ,(Probability of non-zero crashes in the zero hurdle model)
+                p B=Expected crash probability from the count model
+                p C=1-e^(-B),(probability of non-zero crashes in the count model)
+                p U = No. of years × Segment Length × exp (-2.392 + 0.157 LogVolume – 0.038 LogAvgSpeed ).
+                p B = No. of years × Segment Length × exp (−4.378 − 0.665 LogVolume + 0.160 LogAvgSpeed).
+                ul
+                    li
+                        h2 Calibration Factor
+                        p 𝑪𝒂𝒍𝒊𝒃𝒓𝒂𝒕𝒊𝒐𝒏 𝑭𝒂𝒄𝒕𝒐𝒓_𝒔𝒕𝒂𝒕𝒆=(∑ 〖𝑂𝑏𝑠𝑒𝑟𝑣𝑒𝑑 𝐶𝑟𝑎𝑠ℎ𝑒𝑠_𝑠𝑡𝑎𝑡𝑒 〗)/∑ 〖𝑃𝑟𝑒𝑑𝑖𝑐𝑡𝑒𝑑  𝐶𝑟𝑎𝑠ℎ𝑒𝑠_𝑠𝑡𝑎𝑡𝑒〗
+
+        form(method="post", action="/figure", enctype="multipart/form-data")
+            p
+                span Select data file:
+                input(type="file" name="dataFile")
+
+            p
+                span Select Model:
+                select(name="model")
+                    option(value="special") Special
+                    option(value="generic") Generic
+            p
+                span Observed Crashes State:
+                input(type="number" name="crashes_state" step="0.001")
+            p
+                button(type="submit" class="btn btn-primary")  Upload

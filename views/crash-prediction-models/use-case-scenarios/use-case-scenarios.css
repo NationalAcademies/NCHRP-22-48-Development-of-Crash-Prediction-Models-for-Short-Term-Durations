@@ -1,0 +1,25 @@
+.list {
+    margin-top: 20px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+.list > li {
+    margin-left: 3%;
+    width: 22%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.list > li > a {
+    color: white;
+    text-decoration: none;
+}
+.list > li  img {
+    width: 250px;
+    height: 250px;
+}
+.list > li  p {
+    margin-top: 10px;
+    font-size: 17px;
+}

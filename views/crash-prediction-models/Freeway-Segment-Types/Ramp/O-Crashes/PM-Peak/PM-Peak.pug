@@ -1,0 +1,39 @@
+
+extends ../../../../../base.pug
+block content
+    div
+        ul(class="list")
+            li
+                h2 Special Model (FL, VA, WI)
+                p On-Ramp: Predicted Crashes=No.of years ×Segment Length                           ×exp ( -3.7951+1.0635 LogOnRampVolume-1.3242 LogOnRampAvgSpeed ).
+                p Off-Ramp: Predicted Crashes=No.of years ×Segment Length ×exp ( -4.541+0.810 LogOnRampVolume-0.664 LogOnRampAvgSpeed -0.652 Curved Ramp+ 0.720 FL)
+            li
+                h2 Generic Model
+                p On-Ramp: Predicted Crashes=No.of years ×Segment Length                           ×exp ( -3.7951+1.0635 LogOnRampVolume-1.3242 LogOnRampAvgSpeed ) x CF.
+                p Off-Ramp: Predicted Crashes=No.of years ×Segment Length                           ×exp ( -4.541+0.810 LogOnRampVolume-0.664 LogOnRampAvgSpeed -0.652 Curved Ramp) x CF.
+                ul
+                    li
+                        h2 Calibration Factor
+                        p 𝑪𝒂𝒍𝒊𝒃𝒓𝒂𝒕𝒊𝒐𝒏 𝑭𝒂𝒄𝒕𝒐𝒓_𝒔𝒕𝒂𝒕𝒆=(∑ 〖𝑂𝑏𝑠𝑒𝑟𝑣𝑒𝑑 𝐶𝑟𝑎𝑠ℎ𝑒𝑠_𝑠𝑡𝑎𝑡𝑒 〗)/∑ 〖𝑃𝑟𝑒𝑑𝑖𝑐𝑡𝑒𝑑  𝐶𝑟𝑎𝑠ℎ𝑒𝑠_𝑠𝑡𝑎𝑡𝑒〗
+
+        form(method="post", action="/figure", enctype="multipart/form-data")
+            p
+                span Select data file:
+                input(type="file" name="dataFile")
+
+            p
+                span Select Model:
+                select(name="model")
+                    option(value="special") Special
+                    option(value="generic") Generic
+
+            p
+                span Select Type:
+                select(name="type")
+                    option(value="on") On
+                    option(value="off") Off
+            p
+                span Observed Crashes State:
+                input(type="number" name="crashes_state" step="0.001")
+            p
+                button(type="submit" class="btn btn-primary")  Upload

@@ -1,0 +1,18 @@
+
+extends ../../../../../base.pug
+block content
+    div
+        ul(class="list")
+            li
+                h2 Special Model (FL)
+                p Predicted Crashes=No.of years ×Segment Length                             ×exp⁡(-13.138 +2.133 Ln (Total Volume)-2.269 Ln (AvgSpeed)+0.051 Diff.of Avg.Speed (Target_GP  -Downstream_GP)).
+
+
+        form(method="post", action="/figure", enctype="multipart/form-data")
+            p
+                span Select data file:
+                input(type="file" name="dataFile")
+
+
+            p
+                button(type="submit" class="btn btn-primary")  Upload

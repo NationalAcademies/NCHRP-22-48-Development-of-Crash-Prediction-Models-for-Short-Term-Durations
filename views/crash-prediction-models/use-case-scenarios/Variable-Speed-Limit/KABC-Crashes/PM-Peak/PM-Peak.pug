@@ -1,0 +1,31 @@
+
+extends ../../../../../base.pug
+block content
+    div
+        ul(class="list")
+            li
+                h2 Special Model (GA, MI, OR, VA, WA)
+                p Predicted Crashes=No. of years ×Segment Length ×exp⁡(−3.218 +0.609 LogVolume −0.777 LogAvgSpeed+0.024 AvgOccupancy_Downstream  −0.280 VAS_VSL_Segment  +0.221 Basic_Other Segment+2.252 GA +0.67 OR)
+            li
+                h2 Generic Model
+                p Predicted Crashes=No. of years ×Segment Length  ×exp⁡(−3.218 +0.609 Ln (Volume) −0.777 Ln (AvgSpeed)+0.024 AvgOccupancy_Downstream  −0.280 VAS_VSL_Segment  +0.221 Basic_Other Segment)×CF
+                ul
+                    li
+                        h2 Calibration Factor
+                        p 𝑪𝒂𝒍𝒊𝒃𝒓𝒂𝒕𝒊𝒐𝒏 𝑭𝒂𝒄𝒕𝒐𝒓_𝒔𝒕𝒂𝒕𝒆=(∑ 〖𝑂𝑏𝑠𝑒𝑟𝑣𝑒𝑑 𝐶𝑟𝑎𝑠ℎ𝑒𝑠_𝑠𝑡𝑎𝑡𝑒 〗)/∑ 〖𝑃𝑟𝑒𝑑𝑖𝑐𝑡𝑒𝑑  𝐶𝑟𝑎𝑠ℎ𝑒𝑠_𝑠𝑡𝑎𝑡𝑒〗
+
+        form(method="post", action="/figure", enctype="multipart/form-data")
+            p
+                span Select data file:
+                input(type="file" name="dataFile")
+
+            p
+                span Select Model:
+                select(name="model")
+                    option(value="special") Special
+                    option(value="generic") Generic
+            p
+                span Observed Crashes State:
+                input(type="number" name="crashes_state" step="0.001")
+            p
+                button(type="submit" class="btn btn-primary")  Upload
